@@ -5,7 +5,9 @@ application up and running.
 
 Things you may want to cover:
 
-* Ruby version
+* Ruby version 3.3.5
+
+* Rails version 8.0.2
 
 * System dependencies
 
@@ -21,4 +23,4 @@ Things you may want to cover:
 
 * Deployment instructions
 
-* ...
+*       Clonar, bundle install, rails db:migrate, rails s
