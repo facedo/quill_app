@@ -1,0 +1,14 @@
+<p>
+  <strong>Descripción:</strong>
+  <%= @documento.descripcion %>
+</p>
+
+<p>
+  <strong>Contenido:</strong>
+  <div class="border p-3">
+    <%= raw(@documento.contenido) %>
+  </div>
+</p>
+
+<%= link_to 'Editar', edit_documento_path(@documento), class: "btn btn-warning" %>
+<%= link_to 'Volver', documentos_path, class: "btn btn-secondary" %>

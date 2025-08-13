@@ -1,0 +1,41 @@
+<%= simple_form_for(@documento) do |f| %>
+  <%= f.input :descripcion %>
+  <div class="form-group mb-3">
+    <label>Contenido</label>
+    <div id="editor" style="height: 200px;">
+      <%= raw(@documento.contenido || '') %>
+    </div>
+    <%= f.input :contenido, as: :hidden %>
+  </div>
+  <%= f.button :submit, class: "btn btn-primary" %>
+<% end %>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    var quill = new Quill('#editor', {
+      theme: 'snow',
+      modules: {
+        toolbar: [
+          [{ header: [1, 2, 3, false] }],
+          ['bold', 'italic', 'underline', 'strike'],
+          ['blockquote', 'code-block'],
+          [{ list: 'ordered' }, { list: 'bullet' }],
+          [{ script: 'sub' }, { script: 'super' }],
+          [{ indent: '-1' }, { indent: '+1' }],
+          [{ direction: 'rtl' }],
+          [{ size: ['small', false, 'large', 'huge'] }],
+          [{ color: [] }, { background: [] }],
+          [{ font: [] }],
+          [{ align: [] }],
+          ['link', 'image'],
+          ['clean'],
+        ],
+      }
+    });
+
+    var form = document.querySelector('form');
+    form.addEventListener('submit', function() {
+      var contenidoCampo = document.querySelector('input[name="documento[contenido]"]');
+      contenidoCampo.value = quill.root.innerHTML;
+    });
+  });
+</script>

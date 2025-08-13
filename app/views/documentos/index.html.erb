@@ -1,0 +1,24 @@
+<h1>Documentos</h1>
+<%= link_to 'Nuevo Documento', new_documento_path, class: "btn btn-success mb-3" %>
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Descripción</th>
+      <th>Resumen</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @documentos.each do |documento| %>
+      <tr>
+        <td><%= documento.descripcion %></td>
+        <td><%= truncate(strip_tags(documento.contenido), length: 80) %></td>
+        <td>
+          <%= link_to 'Ver', documento, class: "btn btn-info btn-sm" %>
+          <%= link_to 'Editar', edit_documento_path(documento), class: "btn btn-warning btn-sm" %>
+          <%= link_to 'Eliminar', documento, method: :delete, data: { confirm: '¿Seguro?' }, class: "btn btn-danger btn-sm" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
